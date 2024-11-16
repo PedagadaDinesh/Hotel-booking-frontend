@@ -8,9 +8,25 @@ import { GoDotFill } from 'react-icons/go';
 import { FaSwimmingPool, FaWifi, FaParking, FaUtensils, FaSpa, FaDumbbell, FaConciergeBell, FaTv, FaSnowflake } from 'react-icons/fa';
 
 const HotelDetails = () => {
+
+  interface HotelData {
+    acf: {
+      hotel_name: string;
+      hotel_rating: number;
+      hotel_address: string;
+      hotel_description: string;
+      highlight_1: string;
+      highlight_2: string;
+      occupancy: string;
+      "rate-per-night": number;
+    };
+    _links: {
+      'acf:attachment': { href: string }[];
+    };
+  }
   const router = useRouter();
   const { id } = router.query; // Get hotel ID from URL
-  const [hotelData, setHotelData] = useState<any>(null); // State to hold the hotel details
+  const [hotelData, setHotelData] = useState<HotelData | null>(null); // State to hold the hotel details
   const [loading, setLoading] = useState<boolean>(true); // Loading state
   const [error, setError] = useState<string>(''); // Error state
   const [attachmentSourceUrls, setAttachmentSourceUrls] = useState<string[]>([]);
@@ -34,6 +50,10 @@ const HotelDetails = () => {
     fetchHotelDetails();
   }, [id]);
 
+  interface Attachment {
+    href: string;
+  }
+
   useEffect(() => {
     if (!hotelData || !hotelData._links || !hotelData._links['acf:attachment']) return;
 
@@ -42,15 +62,16 @@ const HotelDetails = () => {
     const fetchAttachmentData = async () => {
       try {
         const fetchedSourceUrls = await Promise.all(
-          attachments.map((attachment: any) =>
+          attachments.map((attachment: Attachment) =>
             axios
               .get(attachment.href)
               .then((res) => res.data.source_url) // Extract `source_url` from each response
           )
         );
         setAttachmentSourceUrls(fetchedSourceUrls);
-      } catch (err) {
-        console.error('Error fetching attachment data:', err);
+      } catch {
+        setError('Failed to fetch hotel details');
+        setLoading(false);
       }
     };
 

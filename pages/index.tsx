@@ -38,16 +38,6 @@ const Home = () => {
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   const [loading, setLoading] = useState<boolean>(false);
   const [filteredHots, setFileredHots] = useState<Hotel[]>([])
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  // useEffect(() => {
-  //   const handleScroll = throttle(() => {
-  //     setIsScrolled(window.scrollY > 50); // Adjust threshold as needed
-  //   }, 100); // Adjust throttle delay as needed (e.g., 100ms)
-
-  //   window.addEventListener('scroll', handleScroll);
-  //   return () => window.removeEventListener('scroll', handleScroll);
-  // }, []);
 
  
   useEffect(() => {
