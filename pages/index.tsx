@@ -66,7 +66,7 @@ const Home = () => {
 
       let filteredHotels = response.data;
 
-      if (minPrice || maxPrice) {
+      if (minPrice !== null && maxPrice !== null) {
         filteredHotels = filteredHotels.filter((hotel: Hotel) =>
           hotel.acf["rate-per-night"] >= minPrice && hotel.acf["rate-per-night"] <= maxPrice
         );
