@@ -1,7 +1,15 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 
-const BookingForm = ({ checkInDate, setCheckInDate, checkOutDate, setCheckOutDate, adults, setAdults, children, setChildren } : any) => {
+const BookingForm = ({ checkInDate, setCheckInDate, checkOutDate, setCheckOutDate, adults, setAdults, children, setChildren } : { checkInDate: string, 
+setCheckInDate: React.Dispatch<React.SetStateAction<string>>, 
+checkOutDate: string, 
+setCheckOutDate: React.Dispatch<React.SetStateAction<string>>, 
+adults: number, 
+setAdults: React.Dispatch<React.SetStateAction<number>>, 
+children: number, 
+setChildren: React.Dispatch<React.SetStateAction<number>> }) => {
+
   const router = useRouter();
   const redirectToForm = () => {
     router.push('/form'); // Navigate to the form page

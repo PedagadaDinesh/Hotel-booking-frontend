@@ -41,7 +41,7 @@ const HotelDetails = () => {
         const response = await axios.get(`https://api.elixirtrips.com/wp-json/wp/v2/hotels/${id}`);
         setHotelData(response.data);
         setLoading(false);
-      } catch (err) {
+      } catch {
         setError('Failed to fetch hotel details');
         setLoading(false);
       }

@@ -3,7 +3,25 @@ import { IoArrowBack, IoArrowForward } from 'react-icons/io5';
 import { MdFastfood } from 'react-icons/md';
 import { PiPersonFill } from 'react-icons/pi';
 
-const HotelList = ({ hotels, handleHotelClick }: any) => {
+interface Hotel {
+  id: number;
+  acf: {
+    hotel_name: string;
+    hotel_address: string;
+    hotel_rating: number;
+    hotel_description: string;
+    meal_paln: string;
+    occupancy: number;
+    "rate-per-night": number;
+  };
+}
+
+interface HotelListProps {
+  hotels: Hotel[];
+  handleHotelClick: (id: number) => void;
+}
+
+const HotelList : React.FC<HotelListProps> = ({ hotels, handleHotelClick }) => {
   const [currentPage, setCurrentPage] = useState(1); // Current page state
   const hotelsPerPage = 5; // Number of hotels per page
 
@@ -12,7 +30,7 @@ const HotelList = ({ hotels, handleHotelClick }: any) => {
 
   // Slice hotels based on the current page
   const paginatedHotels = hotels
-    .filter((hotel: any) => hotel.acf?.hotel_name)
+    .filter((hotel) => hotel.acf?.hotel_name)
     .slice((currentPage - 1) * hotelsPerPage, currentPage * hotelsPerPage);
 
   // Handle page change
@@ -25,7 +43,7 @@ const HotelList = ({ hotels, handleHotelClick }: any) => {
   return (
     <div className="lg:w-[75%] md:w-full pt-10 lg:pt-0">
       <ul className="space-y-6">
-        {paginatedHotels.map((hotel: any) => (
+        {paginatedHotels.map((hotel) => (
           <li
             key={hotel.id}
             className="bg-white shadow-md rounded-lg border-2 px-12 py-10 flex flex-col gap-5 shadow-xl"
