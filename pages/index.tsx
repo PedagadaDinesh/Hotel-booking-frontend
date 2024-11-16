@@ -32,8 +32,8 @@ const Home = () => {
   const [checkInDate, setCheckInDate] = useState('');
   const [checkOutDate, setCheckOutDate] = useState('');
   const [occupancy, setOccupancy] = useState<number>(2);
-  const [minPrice, setMinPrice] = useState(3000);
-  const [maxPrice, setMaxPrice] = useState(8000);
+  const [minPrice, setMinPrice] = useState<number>(3000);
+  const [maxPrice, setMaxPrice] = useState<number>(8000);
   const [hotels, setHotels] = useState<Hotel[]>([]);
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   const [loading, setLoading] = useState<boolean>(false);
@@ -55,8 +55,8 @@ const Home = () => {
         checkInDate,
         checkOutDate,
         occupancy:occupancy>0?occupancy:1,
-        minPrice,
-        maxPrice,
+        minPrice: minPrice !== null && minPrice >= 3000 ? minPrice : 3000,
+        maxPrice: maxPrice !== null && maxPrice <= 8000 ? maxPrice : 8000,
         sortOrder,
       }
 
