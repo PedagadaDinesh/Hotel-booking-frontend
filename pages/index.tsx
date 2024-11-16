@@ -118,14 +118,14 @@ setFileredHots(hotels.filter((hotel:Hotel) => hotel.acf?.hotel_address?.toLocale
           />
           
       {/* Booking Form */}
-       <BookingForm
+      <BookingForm
         checkInDate={checkInDate}
         setCheckInDate={setCheckInDate}
         checkOutDate={checkOutDate}
         setCheckOutDate={setCheckOutDate}
         adults={adults}
         setAdults={setAdults}
-        children={children}
+        children={children}  // <-- This is a regular prop, not the special `children` prop
         setChildren={setChildren}
       />
         </div>
