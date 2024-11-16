@@ -31,9 +31,9 @@ const Home = () => {
   const [numchildren, setChildren] = useState(0);
   const [checkInDate, setCheckInDate] = useState('');
   const [checkOutDate, setCheckOutDate] = useState('');
-  const [occupancy, setOccupancy] = useState<number>(1);
-  const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(10000);
+  const [occupancy, setOccupancy] = useState<number>(2);
+  const [minPrice, setMinPrice] = useState(3000);
+  const [maxPrice, setMaxPrice] = useState(8000);
   const [hotels, setHotels] = useState<Hotel[]>([]);
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   const [loading, setLoading] = useState<boolean>(false);
@@ -162,7 +162,7 @@ setFileredHots(hotels.filter((hotel:Hotel) => hotel.acf?.hotel_address?.toLocale
             <label className="block text-md font-semibold text-primary font-[poppins]">Occupancy (Min)</label>
             <input
               type="number"
-              min={1}
+              min={2}
               value={occupancy}
               onChange={(e) => setOccupancy(parseInt(e.target.value))}
               className="w-full mt-2 px-4 py-4 border border-black rounded-md shadow-sm"
