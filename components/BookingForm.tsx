@@ -8,7 +8,7 @@ const BookingForm = ({
   setCheckOutDate,
   adults,
   setAdults,
-  children,
+  numchildren,
   setChildren
 }: {
   checkInDate: string;
@@ -17,7 +17,7 @@ const BookingForm = ({
   setCheckOutDate: React.Dispatch<React.SetStateAction<string>>;
   adults: number;
   setAdults: React.Dispatch<React.SetStateAction<number>>;
-  children: number;
+  numchildren: number;
   setChildren: React.Dispatch<React.SetStateAction<number>>;
 })  => {
 
@@ -63,7 +63,7 @@ const BookingForm = ({
           <input
             type="number"
             min="0"
-            value={children}
+            value={numchildren}
             onChange={(e) => setChildren(parseInt(e.target.value))}
             className="w-full mt-2 px-4 py-3 bg-transparent border-2 border-gray-600 text-white rounded-md shadow-sm"
             placeholder="Number of children"

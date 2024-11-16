@@ -28,7 +28,7 @@ const Home = () => {
 
   const [destination, setDestination] = useState('');
   const [adults, setAdults] = useState(1);
-  const [children, setChildren] = useState(0);
+  const [numchildren, setChildren] = useState(0);
   const [checkInDate, setCheckInDate] = useState('');
   const [checkOutDate, setCheckOutDate] = useState('');
   const [occupancy, setOccupancy] = useState<number>(1);
@@ -42,7 +42,7 @@ const Home = () => {
  
   useEffect(() => {
     fetchHotels();
-  }, [ adults, children, checkInDate, checkOutDate, occupancy, minPrice, maxPrice, sortOrder]);
+  }, [ adults, numchildren, checkInDate, checkOutDate, occupancy, minPrice, maxPrice, sortOrder]);
 
   const fetchHotels = async () => {
     setLoading(true); 
@@ -51,7 +51,7 @@ const Home = () => {
       const body = {
         destination,
         adults,
-        children,
+        numchildren,
         checkInDate,
         checkOutDate,
         occupancy:occupancy>0?occupancy:1,
@@ -125,7 +125,7 @@ setFileredHots(hotels.filter((hotel:Hotel) => hotel.acf?.hotel_address?.toLocale
         setCheckOutDate={setCheckOutDate}
         adults={adults}
         setAdults={setAdults}
-        children={children}  // <-- This is a regular prop, not the special `children` prop
+        numchildren={numchildren}  // <-- This is a regular prop, not the special `children` prop
         setChildren={setChildren}
       />
         </div>
